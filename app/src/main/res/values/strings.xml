@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">iiatimd-android</string>
+    <string name="h1Text">BAR 32</string>
+    <string name="logIn">Log In</string>
+    <string name="register">Register</string>
 </resources>
