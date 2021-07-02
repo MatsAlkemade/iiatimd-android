@@ -3,4 +3,5 @@
     <string name="h1Text">BAR 32</string>
     <string name="logIn">Log In</string>
     <string name="register">Register</string>
+    <string name="backToLogin">Back to login</string>
 </resources>

@@ -4,6 +4,7 @@ package com.example.iiatimd_android.Fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,18 +39,18 @@ public SignUpFragment(){}
     }
 
     private void init() {
-        layoutPassword = view.findViewById(R.id.txtLayoutPasswordSignIn);
-        layoutEmail = view.findViewById(R.id.txtLayoutEmailSignIn);
+        layoutPassword = view.findViewById(R.id.txtLayoutPasswordSignUp);
+        layoutEmail = view.findViewById(R.id.txtLayoutEmailSignUp);
         layoutConfirm = view.findViewById(R.id.txtLayoutConfirmSignUp);
-        txtPassword = view.findViewById(R.id.txtPasswordSignIn);
+        txtPassword = view.findViewById(R.id.txtPasswordSignUp);
         txtConfirm = view.findViewById(R.id.txtConfirmSignUp);
-//        register = view.findViewById(R.id.register);
+        register = view.findViewById(R.id.register);
         txtEmail = view.findViewById(R.id.txtEmailSignUp);
         btnSignUp = view.findViewById(R.id.btnSignUp);
 
-//        register.setOnClickListener(v -> {
-//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAuthContainer, new SignInFragment()).commit();
-//        });
+        register.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAuthContainer, new SignInFragment()).commit();
+        });
 
         btnSignUp.setOnClickListener(v -> {
             if (validate()) {
@@ -75,22 +76,23 @@ public SignUpFragment(){}
             }
         });
     }
-    private boolean validate() {
-        if (txtEmail.getText().toString().isEmpty()) {
+    private boolean validate (){
+        if (txtEmail.getText().toString().isEmpty()){
             layoutEmail.setErrorEnabled(true);
             layoutEmail.setError("Email is Required");
             return false;
         }
-        if (txtPassword.getText().toString().length() < 8) {
+        if (txtPassword.getText().toString().length()<8){
             layoutPassword.setErrorEnabled(true);
             layoutPassword.setError("Required at least 8 characters");
             return false;
         }
-        if (!txtConfirm.getText().toString().equals(txtPassword.getText().toString())) {
+        if (!txtConfirm.getText().toString().equals(txtPassword.getText().toString())){
             layoutConfirm.setErrorEnabled(true);
             layoutConfirm.setError("Password does not match");
             return false;
         }
+
         return true;
     }
 }
