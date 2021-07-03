@@ -24,8 +24,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.iiatimd_android.AdminActivity;
 import com.example.iiatimd_android.AuthActivity;
 import com.example.iiatimd_android.Constant;
+import com.example.iiatimd_android.HomeActivity;
 import com.example.iiatimd_android.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -143,7 +145,15 @@ public class SignInFragment extends Fragment {
                     editor.putInt("id",user.getInt("id"));
                     editor.putBoolean("isLoggedIn",true);
                     editor.apply();
+                    if(user.getString("role").equals("admin")){
+                        startActivity(new Intent(((AuthActivity)getContext()), AdminActivity.class));
+                    }else{
+                        startActivity(new Intent(((AuthActivity)getContext()), HomeActivity.class));
+                    }
+                    ((AuthActivity) getContext()).finish();
                     Toast.makeText(getContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "E-mail or password is incorrect", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -2,6 +2,7 @@ package com.example.iiatimd_android.Fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,7 +28,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.iiatimd_android.AuthActivity;
 import com.example.iiatimd_android.Constant;
+import com.example.iiatimd_android.HomeActivity;
 import com.example.iiatimd_android.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -142,7 +145,12 @@ public SignUpFragment(){}
                     editor.putInt("id", user.getInt("id"));
                     editor.putBoolean("isLoggedIn", true);
                     editor.apply();
+                    startActivity(new Intent(((AuthActivity)getContext()), HomeActivity.class));
+                    ((AuthActivity) getContext()).finish();
                     Toast.makeText(getContext(), "Register Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    layoutEmail.setErrorEnabled(true);
+                    layoutEmail.setError("Email is already in use");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
