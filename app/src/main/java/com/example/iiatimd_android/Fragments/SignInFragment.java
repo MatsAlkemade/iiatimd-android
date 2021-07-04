@@ -146,9 +146,9 @@ public class SignInFragment extends Fragment {
                     editor.putBoolean("isLoggedIn",true);
                     editor.apply();
                     if(user.getString("role").equals("admin")){
-                        startActivity(new Intent(((AuthActivity)getContext()), AdminActivity.class));
+                        startActivity(new Intent(getContext(), AdminActivity.class));
                     }else{
-                        startActivity(new Intent(((AuthActivity)getContext()), HomeActivity.class));
+                        startActivity(new Intent(getContext(), HomeActivity.class));
                     }
                     ((AuthActivity) getContext()).finish();
                     Toast.makeText(getContext(), "Login Success", Toast.LENGTH_SHORT).show();

@@ -14,9 +14,9 @@ import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter recyclerViewAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+//    private RecyclerView recyclerView;
+//    private RecyclerView.Adapter recyclerViewAdapter;
+//    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +24,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Button toLoginBtn = findViewById(R.id.mainLoginBtn);
         toLoginBtn.setOnClickListener(this);
-
-        recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.hasFixedSize();
-
-
-        String[] cocktails = new String[200];
-
-        for(int i=0; i < 200; i++){
-            cocktails[i] = "Cocktail" + i;
-        }
-
-        recyclerViewAdapter = new CocktailAdapter(cocktails);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        RequestQueue queue = Volley.newRequestQueue(this);
+//
+//        recyclerView = findViewById(R.id.recyclerView);
+//        layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.hasFixedSize();
+//
+//
+//        String[] cocktails = new String[200];
+//
+//        for(int i=0; i < 200; i++){
+//            cocktails[i] = "Cocktail" + i;
+//        }
+//
+//        recyclerViewAdapter = new CocktailAdapter(cocktails);
+//        recyclerView.setAdapter(recyclerViewAdapter);
+//        RequestQueue queue = Volley.newRequestQueue(this);
 
     }
 
