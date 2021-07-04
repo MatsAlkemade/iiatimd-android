@@ -14,8 +14,25 @@
         android:text="@string/h1Text"
         android:textSize="32sp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="80dp"/>
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLayoutNameSignUp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/txtNameSignUp"
+            android:hint="Name"
+            android:inputType="text"
+            android:textSize="15sp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLayoutEmailSignUp"
@@ -27,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:id="@+id/txtEmailSignUp"
-            android:hint="Email"
+            android:hint="E-mail"
             android:inputType="textEmailAddress"
             android:textSize="15sp"
             />
@@ -55,14 +72,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLayoutConfirmSignUp"
         android:layout_width="match_parent"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="30dp"
+        app:passwordToggleEnabled="true"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:id="@+id/txtConfirmSignUp"
-            android:hint="Confirm"
+            android:hint="Confirm password"
             android:inputType="textPassword"
             android:textSize="15sp"
             />
@@ -71,19 +89,22 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/logIn"
-        android:id="@+id/btnSignUp"/>
+        android:text="@string/register"
+        android:id="@+id/btnSignUp"
+        android:layout_marginBottom="15dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal">
 
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/register"-->
-<!--        android:id="@+id/register"-->
-<!--        android:layout_marginRight="6dp"></TextView>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/backToLogin"
+        android:id="@+id/register"
+        android:textColor="@color/purple_700"></TextView>
+    </LinearLayout>
 </LinearLayout>
