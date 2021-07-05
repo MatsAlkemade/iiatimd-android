@@ -127,6 +127,8 @@ public class AddCocktailFragment extends Fragment {
                 if (object.getBoolean("success") == true) {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment()).commit();
                     Toast.makeText(getContext(), "Cocktail added", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
