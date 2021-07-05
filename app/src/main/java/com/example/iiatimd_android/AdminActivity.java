@@ -41,7 +41,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment(preferences)).commit();
         init();
     }
 
@@ -123,6 +123,6 @@ public class AdminActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment(preferences)).commit();
     }
 }
