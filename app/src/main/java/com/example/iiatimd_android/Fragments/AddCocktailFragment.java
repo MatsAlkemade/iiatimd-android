@@ -87,7 +87,7 @@ public class AddCocktailFragment extends Fragment {
         });
 
         btnCancel.setOnClickListener(v -> {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment(userPref)).commit();
         });
 
         addImageBtn.setOnClickListener(v -> {
@@ -139,7 +139,7 @@ public class AddCocktailFragment extends Fragment {
                 JSONObject object = new JSONObject(response);
                 Log.d("state", String.valueOf(object.getBoolean("success")));
                 if (object.getBoolean("success") == true) {
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment()).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment(userPref)).commit();
                     Toast.makeText(getContext(), "Cocktail added", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();

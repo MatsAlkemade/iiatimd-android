@@ -1,14 +1,19 @@
 package com.example.iiatimd_android.Fragments;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,8 +45,9 @@ public class AdminCocktailsFragment extends Fragment {
     private RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button addCocktailBtn;
+    private SharedPreferences preferences;
 
-    public AdminCocktailsFragment(){}
+    public AdminCocktailsFragment(SharedPreferences preferencesVar){ preferences = preferencesVar;}
 
     @Nullable
     @Override
@@ -80,7 +86,7 @@ public class AdminCocktailsFragment extends Fragment {
                     cocktailArray.add(cocktailMap);
                 }
 
-                recyclerViewAdapter = new CocktailAdminAdapter(cocktailArray);
+                recyclerViewAdapter = new CocktailAdminAdapter(getContext(), preferences, cocktailArray);
                 recyclerView.setAdapter(recyclerViewAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
