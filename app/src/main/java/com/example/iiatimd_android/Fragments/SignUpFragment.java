@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.iiatimd_android.AuthActivity;
 import com.example.iiatimd_android.Constant;
 import com.example.iiatimd_android.HomeActivity;
+import com.example.iiatimd_android.MainActivity;
 import com.example.iiatimd_android.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -43,7 +44,7 @@ import java.util.Map;
 
 public class SignUpFragment extends Fragment {
 
-public SignUpFragment(){}
+    public SignUpFragment(){}
 
     private View view;
     private TextInputLayout layoutName, layoutEmail, layoutPassword, layoutConfirm;
@@ -146,6 +147,7 @@ public SignUpFragment(){}
                     editor.putBoolean("isLoggedIn", true);
                     editor.apply();
                     startActivity(new Intent(((AuthActivity)getContext()), HomeActivity.class));
+                    ((MainActivity) getContext()).finish();
                     ((AuthActivity) getContext()).finish();
                     Toast.makeText(getContext(), "Register Success", Toast.LENGTH_SHORT).show();
                 } else {
