@@ -1,13 +1,15 @@
 package com.example.iiatimd_android;
 
+import android.content.Intent;
+import android.nfc.Tag;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,15 +23,22 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
         cocktailArray = arrayList;
     }
 
+
     public static class CocktailViewHolder extends RecyclerView.ViewHolder{
         public TextView textView;
         public TextView descTextView;
+        public TextView percentageView;
+        public TextView caloriesView;
+
 
         public CocktailViewHolder(View v){
             super(v);
             textView = v.findViewById(R.id.cocktailTextView);
             descTextView = v.findViewById(R.id.descTextView);
+            percentageView = v.findViewById(R.id.percentageView);
+            caloriesView = v.findViewById(R.id.caloriesView);
         }
+
     }
 
     @NonNull
@@ -44,6 +53,8 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
         Log.d("onBindViewHolder", String.valueOf(position));
         holder.textView.setText(cocktailArray.get(position).get("title"));
         holder.descTextView.setText(cocktailArray.get(position).get("desc"));
+        holder.percentageView.setText(cocktailArray.get(position).get("percentage") + "%");
+        holder.caloriesView.setText(cocktailArray.get(position).get("calories") + " calories");
     }
 
     @Override

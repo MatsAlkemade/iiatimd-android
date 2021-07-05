@@ -4,4 +4,6 @@
     <string name="logIn">Log In</string>
     <string name="register">Register</string>
     <string name="backToLogin">Back to login</string>
+    <string name="txtBar">BAR</string>
+    <string name="txt32">32</string>
 </resources>
