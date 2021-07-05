@@ -5,118 +5,144 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ADD COCKTAIL"
-                android:textSize="24sp"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLayoutNameCocktail"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="30dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:id="@+id/txtNameCocktail"
-                    android:hint="Name"
-                    android:inputType="text"
-                    android:textSize="15sp"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLayoutDescCocktail"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="30dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDescCocktail"
-                    android:layout_width="match_parent"
-                    android:layout_height="93dp"
-                    android:hint="Description (max. 200)"
-                    android:inputType="textMultiLine"
-                    android:maxLength="200"
-                    android:scrollHorizontally="false"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLayoutPercentageCocktail"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="30dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:id="@+id/txtPercentageCocktail"
-                    android:hint="Percentage"
-                    android:inputType="numberDecimal"
-                    android:textSize="15sp"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtLayoutCaloriesCocktail"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="30dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:id="@+id/txtCaloriesCocktail"
-                    android:hint="Calories"
-                    android:maxLength ="5"
-                    android:inputType="number"
-                    android:textSize="15sp"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CONFIRM"
-                android:id="@+id/addCocktailConfirm"
-                android:layout_marginBottom="15dp"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cancel"
-                    android:id="@+id/addCocktailCancel"
-                    android:textColor="@color/purple_700"></TextView>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:paddingLeft="50dp"-->
+<!--            android:paddingRight="50dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="ADD COCKTAIL"-->
+<!--                android:textSize="24sp"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginBottom="30dp"/>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/txtLayoutNameCocktail"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:id="@+id/txtNameCocktail"-->
+<!--                    android:hint="Name"-->
+<!--                    android:inputType="text"-->
+<!--                    android:textSize="15sp"-->
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/imageAddBtn"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:text="Add image" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageAddCocktail"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+
+<!--                    android:layout_marginBottom="30dp" />-->
+
+
+<!--            </LinearLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/txtLayoutDescCocktail"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/txtDescCocktail"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="93dp"-->
+<!--                    android:hint="Description (max. 200)"-->
+<!--                    android:inputType="textMultiLine"-->
+<!--                    android:maxLength="200"-->
+<!--                    android:scrollHorizontally="false"-->
+<!--                    android:textSize="15sp" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/txtLayoutPercentageCocktail"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:id="@+id/txtPercentageCocktail"-->
+<!--                    android:hint="Percentage"-->
+<!--                    android:inputType="numberDecimal"-->
+<!--                    android:textSize="15sp"-->
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/txtLayoutCaloriesCocktail"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginBottom="30dp"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:id="@+id/txtCaloriesCocktail"-->
+<!--                    android:hint="Calories"-->
+<!--                    android:maxLength ="5"-->
+<!--                    android:inputType="number"-->
+<!--                    android:textSize="15sp"-->
+<!--                    />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="CONFIRM"-->
+<!--                android:id="@+id/addCocktailConfirm"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Cancel"-->
+<!--                    android:layout_marginBottom="60dp"-->
+<!--                    android:id="@+id/addCocktailCancel"-->
+<!--                    android:textColor="@color/purple_700"></TextView>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--</ScrollView>-->

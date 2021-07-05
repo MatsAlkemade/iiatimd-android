@@ -1,78 +1,78 @@
-package com.example.iiatimd_android.Fragments;
+package com.example.iiatimd_android;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.iiatimd_android.AuthActivity;
-import com.example.iiatimd_android.Constant;
-import com.example.iiatimd_android.HomeActivity;
-import com.example.iiatimd_android.MainActivity;
-import com.example.iiatimd_android.R;
+import com.example.iiatimd_android.Fragments.AdminCocktailsFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddCocktailFragment extends Fragment {
+import static java.security.AccessController.getContext;
+
+public class AddCocktailActivity extends AppCompatActivity {
 
     private static final int IMAGE_PICK = 1;
-    private View view;
     private TextInputLayout layoutName, layoutDesc, layoutPercentage, layoutCalories;
     private TextInputEditText txtName, txtDesc, txtPercentage, txtCalories;
     private TextView btnCancel;
+    private ImageView addImage;
     private Button btnConfirm, addImageBtn;
     private ProgressDialog dialog;
     private SharedPreferences userPref;
+    private Bitmap bitmap = null;
 
-
-    public AddCocktailFragment(){}
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.layout_add_cocktail,container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_cocktail);
         init();
-        return view;
     }
 
-    private void init() {
-        userPref = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
-        layoutName = view.findViewById(R.id.txtLayoutNameCocktail);
-        layoutDesc = view.findViewById(R.id.txtLayoutDescCocktail);
-        layoutPercentage = view.findViewById(R.id.txtLayoutPercentageCocktail);
-        layoutCalories = view.findViewById(R.id.txtLayoutCaloriesCocktail);
-        txtName = view.findViewById(R.id.txtNameCocktail);
-        txtDesc = view.findViewById(R.id.txtDescCocktail);
-        txtPercentage = view.findViewById(R.id.txtPercentageCocktail);
-        txtCalories = view.findViewById(R.id.txtCaloriesCocktail);
-        addImageBtn = view.findViewById(R.id.imageAddBtn);
-        btnCancel = view.findViewById(R.id.addCocktailCancel);
-        btnConfirm = view.findViewById(R.id.addCocktailConfirm);
-        dialog = new ProgressDialog(getContext());
+    private void init(){
+        userPref = getSharedPreferences("user", Context.MODE_PRIVATE);
+        layoutName = findViewById(R.id.txtLayoutNameCocktail);
+        layoutDesc = findViewById(R.id.txtLayoutDescCocktail);
+        layoutPercentage = findViewById(R.id.txtLayoutPercentageCocktail);
+        layoutCalories = findViewById(R.id.txtLayoutCaloriesCocktail);
+        txtName = findViewById(R.id.txtNameCocktail);
+        txtDesc = findViewById(R.id.txtDescCocktail);
+        txtPercentage = findViewById(R.id.txtPercentageCocktail);
+        txtCalories = findViewById(R.id.txtCaloriesCocktail);
+        addImage = findViewById(R.id.imageAddCocktail);
+        addImageBtn = findViewById(R.id.imageAddBtn);
+        btnCancel = findViewById(R.id.addCocktailCancel);
+        btnConfirm = findViewById(R.id.addCocktailConfirm);
+        dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
 
         btnConfirm.setOnClickListener(v -> {
@@ -87,7 +87,7 @@ public class AddCocktailFragment extends Fragment {
         });
 
         btnCancel.setOnClickListener(v -> {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment()).commit();
+            finish();
         });
 
         addImageBtn.setOnClickListener(v -> {
@@ -95,6 +95,21 @@ public class AddCocktailFragment extends Fragment {
             gallery.setType("image/*");
             startActivityForResult(gallery, IMAGE_PICK);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode ==IMAGE_PICK && resultCode==RESULT_OK){
+            Uri imgUri = data.getData();
+            addImage.setImageURI(imgUri);
+
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private boolean validate() {
@@ -131,22 +146,18 @@ public class AddCocktailFragment extends Fragment {
     }
 
     private void addCocktail() {
-        Log.d("werktHet?", "komt die erin ");
-
         dialog.setMessage("Adding cocktail");
-        Log.d("toevoegen", "voegt die hem toe ");
         dialog.show();
         StringRequest request = new StringRequest(Request.Method.POST, Constant.COCKTAIL_CREATE, response -> {
-            Log.d("postRequest", "verstuurt die de post ");
             try {
-                Log.d("response2", response);
+                Log.d("response", response);
                 JSONObject object = new JSONObject(response);
                 Log.d("state", String.valueOf(object.getBoolean("success")));
                 if (object.getBoolean("success") == true) {
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameAdminContainer, new AdminCocktailsFragment()).commit();
-                    Toast.makeText(getContext(), "Cocktail added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Cocktail added", Toast.LENGTH_SHORT).show();
+                    finish();
                 } else {
-                    Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -159,7 +170,6 @@ public class AddCocktailFragment extends Fragment {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 String token = userPref.getString("token","");
-                Log.d("token", token);
                 HashMap<String,String> map = new HashMap<>();
                 map.put("Authorization","Bearer "+token);
                 return map;
@@ -172,11 +182,24 @@ public class AddCocktailFragment extends Fragment {
                 map.put("desc",txtDesc.getText().toString());
                 map.put("percentage",txtPercentage.getText().toString());
                 map.put("calories",txtCalories.getText().toString());
+                map.put("photo", bitmapToString(bitmap));
+                Log.d("photoBitmap", map.get("photo"));
                 return map;
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(getContext());
+        RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
+    }
+
+    private String bitmapToString(Bitmap bitmap){
+        if(bitmap != null){
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte [] array = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(array,Base64.DEFAULT);
+        }
+
+        return "";
     }
 }
