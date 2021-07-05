@@ -6,4 +6,6 @@
     <string name="backToLogin">Back to login</string>
     <string name="txtBar">BAR</string>
     <string name="txt32">32</string>
+    <string name="txtSignIn">SIGN IN</string>
+    <string name="txtSignUp">SIGN UP</string>
 </resources>

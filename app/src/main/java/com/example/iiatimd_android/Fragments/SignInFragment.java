@@ -152,7 +152,7 @@ public class SignInFragment extends Fragment {
                         startActivity(new Intent(getContext(), HomeActivity.class));
                     }
                     ((AuthActivity) getContext()).finish();
-                    ((MainActivity) getContext()).finish();
+//                    ((MainActivity) getContext()).finish();
                     Toast.makeText(getContext(), "Login Success", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "E-mail or password is incorrect", Toast.LENGTH_SHORT).show();
