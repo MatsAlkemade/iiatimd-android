@@ -43,26 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toLoginBtn.setOnClickListener(this);
     }
 
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
-            case R.id.page1:
-                Toast.makeText(this, "Page 1 is selected", Toast.LENGTH_SHORT).show();
-                Intent toLoginIntent = new Intent(this, HomeActivity.class);
-                startActivity(toLoginIntent);
-                return true;
-            case R.id.page2:
-                Toast.makeText(this, "Page 2 is selected", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
     public void onClick(View v){
         Intent toLoginIntent = new Intent(this,AuthActivity.class);
         startActivity(toLoginIntent);

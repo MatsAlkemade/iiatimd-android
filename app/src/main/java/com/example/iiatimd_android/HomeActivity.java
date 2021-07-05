@@ -44,23 +44,14 @@ public class HomeActivity extends AppCompatActivity {
         preferences = getSharedPreferences("user",Context.MODE_PRIVATE);
     }
 
-//    private Context getContext() {
-//    }
-
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.example_menu, menu);
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-//        switch(item.getItemId()){
-//            case R.id.page1:
-//                Toast.makeText(this, "Page 1 is selected", Toast.LENGTH_SHORT).show();
-//                Intent toLoginIntent = new Intent(this, HomeActivity.class);
-//                startActivity(toLoginIntent);
-//                return true;
-            switch (item.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
                 case R.id.page2: {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage("Do you want to logout?");
@@ -78,17 +69,22 @@ public class HomeActivity extends AppCompatActivity {
                     });
                     builder.show();
                 }
+                switch (item.getItemId()) {
+                    case R.id.page1:
+                        Intent toGoHomeActivityIntent = new Intent(this, HomeActivity.class);
+                        startActivity(toGoHomeActivityIntent);
+                }
             }
 
             return super.onOptionsItemSelected(item);
         }
 
-        private void logout(){
-            StringRequest request = new StringRequest(Request.Method.GET,Constant.LOGOUT, res->{
+        private void logout() {
+            StringRequest request = new StringRequest(Request.Method.GET, Constant.LOGOUT, res -> {
 
                 try {
                     JSONObject object = new JSONObject(res);
-                    if (object.getBoolean("success")){
+                    if (object.getBoolean("success")) {
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.clear();
                         editor.apply();
@@ -98,16 +94,14 @@ public class HomeActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
-            },error -> {
+            }, error -> {
                 error.printStackTrace();
-            }){
+            }) {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-                    String token = preferences.getString("token","");
-                    HashMap<String,String> map = new HashMap<>();
-                    map.put("Authorization","Bearer "+token);
+                    String token = preferences.getString("token", "");
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("Authorization", "Bearer " + token);
                     return map;
                 }
             };
@@ -115,5 +109,5 @@ public class HomeActivity extends AppCompatActivity {
             RequestQueue queue = Volley.newRequestQueue(this);
             queue.add(request);
         }
+    }
 
-}
