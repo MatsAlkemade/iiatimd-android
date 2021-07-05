@@ -28,6 +28,7 @@ import com.example.iiatimd_android.AdminActivity;
 import com.example.iiatimd_android.AuthActivity;
 import com.example.iiatimd_android.Constant;
 import com.example.iiatimd_android.HomeActivity;
+import com.example.iiatimd_android.MainActivity;
 import com.example.iiatimd_android.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -151,6 +152,7 @@ public class SignInFragment extends Fragment {
                         startActivity(new Intent(getContext(), HomeActivity.class));
                     }
                     ((AuthActivity) getContext()).finish();
+                    ((MainActivity) getContext()).finish();
                     Toast.makeText(getContext(), "Login Success", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "E-mail or password is incorrect", Toast.LENGTH_SHORT).show();
