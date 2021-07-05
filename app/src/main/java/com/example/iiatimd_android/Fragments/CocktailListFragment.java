@@ -68,6 +68,7 @@ public class CocktailListFragment extends Fragment {
                     cocktailMap.put("desc", cocktails.getJSONObject(i).getString("desc"));
                     cocktailMap.put("percentage", cocktails.getJSONObject(i).getString("percentage"));
                     cocktailMap.put("calories", cocktails.getJSONObject(i).getString("calories"));
+                    cocktailMap.put("photo", cocktails.getJSONObject(i).getString("photo"));
                     cocktailArray.add(cocktailMap);
                 }
 

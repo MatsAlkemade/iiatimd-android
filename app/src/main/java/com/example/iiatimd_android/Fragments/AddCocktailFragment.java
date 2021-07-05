@@ -131,13 +131,9 @@ public class AddCocktailFragment extends Fragment {
     }
 
     private void addCocktail() {
-        Log.d("werktHet?", "komt die erin ");
-
         dialog.setMessage("Adding cocktail");
-        Log.d("toevoegen", "voegt die hem toe ");
         dialog.show();
         StringRequest request = new StringRequest(Request.Method.POST, Constant.COCKTAIL_CREATE, response -> {
-            Log.d("postRequest", "verstuurt die de post ");
             try {
                 Log.d("response2", response);
                 JSONObject object = new JSONObject(response);

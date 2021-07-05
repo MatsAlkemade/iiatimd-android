@@ -1,18 +1,24 @@
 package com.example.iiatimd_android;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.nfc.Tag;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 
 public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.CocktailViewHolder> {
@@ -29,7 +35,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
         public TextView descTextView;
         public TextView percentageView;
         public TextView caloriesView;
-
+        public ImageView imageView;
 
         public CocktailViewHolder(View v){
             super(v);
@@ -37,6 +43,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
             descTextView = v.findViewById(R.id.descTextView);
             percentageView = v.findViewById(R.id.percentageView);
             caloriesView = v.findViewById(R.id.caloriesView);
+            imageView = v.findViewById(R.id.imageView);
         }
 
     }
@@ -48,6 +55,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
         return new CocktailViewHolder(v);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull CocktailAdapter.CocktailViewHolder holder, int position) {
         Log.d("onBindViewHolder", String.valueOf(position));
@@ -55,6 +63,13 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
         holder.descTextView.setText(cocktailArray.get(position).get("desc"));
         holder.percentageView.setText(cocktailArray.get(position).get("percentage") + "%");
         holder.caloriesView.setText(cocktailArray.get(position).get("calories") + " calories");
+
+        if(cocktailArray.get(position).get("photo") != null || cocktailArray.get(position).get("photo") != "") {
+            String filteredString = cocktailArray.get(position).get("photo").replace("\n", "");
+            byte[] decodedString = Base64.getDecoder().decode(filteredString);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            holder.imageView.setImageBitmap(decodedByte);
+        }
     }
 
     @Override
