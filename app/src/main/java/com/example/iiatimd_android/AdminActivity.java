@@ -51,7 +51,7 @@ public class AdminActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
+        inflater.inflate(R.menu.admin_menu, menu);
         return true;
     }
 
@@ -73,11 +73,6 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 });
                 builder.show();
-            }
-            switch (item.getItemId()) {
-                case R.id.page1:
-                    Intent toGoHomeActivityIntent = new Intent(this, HomeActivity.class);
-                    startActivity(toGoHomeActivityIntent);
             }
         }
 
