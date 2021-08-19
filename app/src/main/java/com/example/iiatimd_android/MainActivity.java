@@ -3,6 +3,7 @@ package com.example.iiatimd_android;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.iiatimd_android.Fragments.AppDatabase;
 import com.example.iiatimd_android.Fragments.Cocktail;
 import com.example.iiatimd_android.Fragments.CocktailListFragment;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -44,10 +46,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toLoginBtn.setOnClickListener(this);
     }
 
+
+
     public void onClick(View v){
         Intent toLoginIntent = new Intent(this,AuthActivity.class);
         startActivity(toLoginIntent);
     }
-
 }
 
