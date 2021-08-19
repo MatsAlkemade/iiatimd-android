@@ -1,7 +1,6 @@
 package com.example.iiatimd_android.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +34,9 @@ public class CocktailListFragment extends Fragment {
     private RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    public CocktailListFragment(){
-    }
+
+
+    public CocktailListFragment(){}
 
 
     @Nullable

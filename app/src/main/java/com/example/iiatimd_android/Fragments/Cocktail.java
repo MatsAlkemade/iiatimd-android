@@ -1,35 +1,19 @@
 package com.example.iiatimd_android.Fragments;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import java.math.BigDecimal;
 
-@Entity
 public class Cocktail {
 
-    @ColumnInfo
     private String title;
-
-    @ColumnInfo
     private String desc;
+    private Integer calories;
+    private BigDecimal percentage;
 
-    @ColumnInfo
-    private String calories;
-
-    @ColumnInfo
-    private String percentage;
-
-    @PrimaryKey
-    @NonNull
-    private int id;
-
-    public Cocktail(String title, String desc, String calories, String percentage, int id){
+    public Cocktail(String title, String desc, Integer calories, BigDecimal percentage){
         this.title = title;
         this.desc = desc;
         this.calories = calories;
         this.percentage = percentage;
-        this.id = id;
     }
 
     public String getTitle(){
@@ -40,16 +24,12 @@ public class Cocktail {
         return this.desc;
     }
 
-    public String getCalories(){
+    public Integer getCalories(){
         return this.calories;
     }
 
-    public String getPercentage(){
+    public BigDecimal getPercentage(){
         return this.percentage;
-    }
-
-    public int getId(){
-        return this.id;
     }
 
 }
