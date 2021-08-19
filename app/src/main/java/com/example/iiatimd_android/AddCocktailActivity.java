@@ -23,6 +23,9 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.iiatimd_android.Fragments.AdminCocktailsFragment;
@@ -155,6 +158,7 @@ public class AddCocktailActivity extends AppCompatActivity {
                 Log.d("state", String.valueOf(object.getBoolean("success")));
                 if (object.getBoolean("success") == true) {
                     Toast.makeText(this, "Cocktail added", Toast.LENGTH_SHORT).show();
+                    sendCocktailNotification();
                     finish();
                 } else {
                     Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -167,6 +171,8 @@ public class AddCocktailActivity extends AppCompatActivity {
             error.printStackTrace();
             dialog.dismiss();
         }){
+
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 String token = userPref.getString("token","");
@@ -201,5 +207,48 @@ public class AddCocktailActivity extends AppCompatActivity {
         }
 
         return "";
+    }
+
+    private void sendCocktailNotification() {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "key=AAAASn_MonU:APA91bFevXHrycI9dDpq717dBBBI_6AtzUvPVoOrruwNlzAPhZme4qYdxJ9Rc_ZL4VrOghKpWZQ1qPGFzGQsYNS0827TssM1uOaQNFA5SqSKG1Z16DAmQCbEW9Pkv3Mgr6qmsfepTpFs";
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
+
+        try{
+            notificationBody.put("title", "New cocktail added!");
+            notificationBody.put("message", txtName.getText().toString() + " has been added!");
+            notificationBody.put("cocktail", txtName.getText().toString());
+            notification.put("to", "/topics/cocktail");
+            notification.put("data", notificationBody);
+        } catch(JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String,String> map = new HashMap<>();
+                map.put("Authorization", serverKey);
+                return map;
+            }
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
     }
 }

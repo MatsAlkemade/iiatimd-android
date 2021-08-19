@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.iiatimd_android.Fragments.Cocktail;
 import com.example.iiatimd_android.Fragments.CocktailListFragment;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,12 +35,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button toLoginBtn = findViewById(R.id.mainLoginBtn);
+        FirebaseMessaging.getInstance().subscribeToTopic("cocktail");
         toLoginBtn.setOnClickListener(this);
     }
 
